@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Digit Counter</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <label for="num">Enter Number:</label>
+    <input type="text" id="num" />
+    <button id="count-btn">Count Digits</button>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('count-btn').addEventListener('click', function () {
+            const input = document.getElementById('num').value.trim();
+
+            if (!/^[-+]?\d+$/.test(input)) {
+                document.getElementById('result').textContent = 'Please enter a valid integer.';
+                return;
+            }
+
+            const number = Math.abs(parseInt(input));
+            const digitCount = number === 0 ? 1 : Math.floor(Math.log10(number)) + 1;
+
+            document.getElementById('result').textContent = `Number of digits: ${digitCount}`;
+        });
+    </script>
+</body>
+</html>
